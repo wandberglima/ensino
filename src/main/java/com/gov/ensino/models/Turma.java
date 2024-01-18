@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 public class Turma {
@@ -29,7 +30,7 @@ public class Turma {
     @ManyToOne
     private Instrutor idInstrutor;
 
-    @OneToOne(mappedBy = "id")
-    private Aluno idAluno;
+    @OneToMany(mappedBy = "id")
+    private List<Aluno> listaAlunos;
 
 }

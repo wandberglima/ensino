@@ -9,26 +9,25 @@ import java.util.List;
 @Entity
 public class Aluno implements Serializable {
 
-    private Float peso;
-
-    private Float altura;
-
-    private LocalDate nascimento;
-
-    private String telefone;
-
-    private String endereco;
-
-    private String nome;
-
-    private LocalDate dataMatricula;
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long matricula;
 
+    private LocalDate dataMatricula;
 
-    @OneToMany(mappedBy = "turma")
-    private List<Turma> idTurma;
+    private String nome;
+
+    private String endereco;
+
+    private String telefone;
+
+    private LocalDate nascimento;
+
+    private Float altura;
+
+    private Float peso;
+
+    @OneToOne(mappedBy = "turma")
+    private Turma idTurma;
 
 }
