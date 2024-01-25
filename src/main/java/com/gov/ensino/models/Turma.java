@@ -1,36 +1,50 @@
 package com.gov.ensino.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Turma {
 
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idTurma;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
+    @Column(name = "QTD_ALUNOS", nullable = false)
     private BigDecimal quantidadeAlunos;
 
-    private LocalTime horaAula;
+    @Column(name = "HORA_AULA")
+    private Timestamp horaAula;
 
-    private LocalTime duracaoAula;
+    @Column(name = "DURAÇÃO_AULA")
+    private Timestamp duracaoAula;
 
-    private LocalDate dataInicio;
+    @Column(name = "DATA_INICIO")
+    private Date dataInicio;
 
-    private LocalDate dataFim;
+    @Column(name = "DATA_FIM")
+    private Date dataFim;
 
+    @Column(name = "ATIVIDADE")
     private BigDecimal Atividade;
 
-    @ManyToOne
-    private Instrutor idInstrutor;
+    @OneToMany(mappedBy = "matricula")
+    private List<Aluno> alunos;
 
-    @OneToMany(mappedBy = "id")
-    private List<Aluno> listaAlunos;
+    @OneToOne(mappedBy = "turma")
+    private Aluno aluno;
+
+    @ManyToMany(mappedBy = "id")
+    private List<Instrutor> instrutores;
 
 }

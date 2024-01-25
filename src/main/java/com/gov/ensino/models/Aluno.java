@@ -1,33 +1,45 @@
 package com.gov.ensino.models;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Date;
 
 @Entity
-public class Aluno implements Serializable {
+@Data
+public class Aluno {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "MATRICULA")
     private Long matricula;
 
-    private LocalDate dataMatricula;
+    @Column(name = "DATA_MATRICULA")
+    private Date dataMatricula;
 
+    @Column(name = "NOME")
     private String nome;
 
+    @Column(name = "ENDEREÇO")
     private String endereco;
 
+    @Column(name = "TELEFONE")
     private String telefone;
 
-    private LocalDate nascimento;
+    @Column(name = "NASCIMENTO")
+    private Timestamp nascimento;
 
+    @Column(name = "ALTURA")
     private Float altura;
 
+    @Column(name = "PESO")
     private Float peso;
 
-    @OneToOne(mappedBy = "turma")
-    private Turma idTurma;
+    @OneToOne
+    @JoinColumn(name = "id_turma")
+    private Turma turma;
 
 }
