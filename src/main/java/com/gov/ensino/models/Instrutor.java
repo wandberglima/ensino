@@ -28,7 +28,6 @@ public class Instrutor {
     @Column(name = "TELEFONE", nullable = false)
     private String telefone;
 
-
     @ManyToMany
     @JoinTable(
             name = "turma",
